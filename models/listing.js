@@ -8,13 +8,8 @@ const listingschema = new Schema({
   },
   description: String,
   image: {
-    type: String,
-    default:
-      "https://unsplash.com/photos/a-bride-and-groom-walking-on-a-hill-IfjHaIoAoqE",
-    set: (v) =>
-      v === ""
-        ? "https://unsplash.com/photos/a-bride-and-groom-walking-on-a-hill-IfjHaIoAoqE"
-        : v,
+    url: String,
+    filename: String,
   },
   price: Number,
   location: String,
