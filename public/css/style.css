@@ -16,7 +16,7 @@
 body {
   height: 100%;
   margin: 0;
-  padding: 0;
+  /* padding: 0; */
 }
 
 /* Set up flexbox layout for the body */
@@ -52,9 +52,36 @@ body {
 
 /* Footer */
 
+.footer {
+  background-color: #222222; /* Change as needed */
+  padding: 20px 0; /* Space around the footer */
+  position: relative; /* Position relative to its container */
+  text-align: center; /* Center text */
+  width: 100%; /* Ensure it spans the full width */
+}
+
+.f-info {
+  max-width: 1200px; /* Optional: limit the width of the content */
+  margin: 0 auto; /* Center the content horizontally */
+  /* text-align: center;
+  height: 8rem;
+  background-color: #ebebeb;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: space-evenly; */
+}
+
+.f-info-socials i {
+  margin: 0 10px;
+  /* font-size: 1.2rem;
+  margin-right: 1rem; */
+}
+
 .f-info-links a {
-  text-decoration: none;
-  color: #222222;
+  margin: 0 10px;
+  /* text-decoration: none;
+  color: #222222; */
 }
 
 .f-info-links a:hover {
@@ -68,21 +95,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.f-info-socials i {
-  font-size: 1.2rem;
-  margin-right: 1rem;
-}
-
-.f-info {
-  text-align: center;
-  height: 8rem;
-  background-color: #ebebeb;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: space-evenly;
 }
 
 /* cards */
@@ -144,4 +156,11 @@ body {
 .show-card {
   padding-left: 0;
   padding-right: 0;
+}
+
+/* map */
+
+#map {
+  height: 400px;
+  width: 80vh;
 }
