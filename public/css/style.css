@@ -1,87 +1,72 @@
-/* body */
-/* <uniquifier>: Use a unique and descriptive class name*/
-/* <weight>: Use a value from 200 to 800*/
-
-.plus-jakarta-sans-body {
-  font-family: "Plus Jakarta Sans", sans-serif !important;
-}
-
-/* .body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-} */
-
-.html,
+html,
 body {
   height: 100%;
   margin: 0;
-  /* padding: 0; */
-}
-
-/* Set up flexbox layout for the body */
-.body {
   display: flex;
   flex-direction: column;
 }
 
-/* Allow main content to expand and push footer down */
-.main {
-  flex: 1;
-  position: fixed;
-  bottom: 0;
+body {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  color: #e3f2fd;
 }
+
 .container {
   flex: 1;
+}
+
+footer {
+  background-color: #ade8f4;
+  padding: 10px 0;
+  text-align: center;
+  width: 100%;
+}
+
+footer .f-info-socials i {
+  margin: 0 10px;
+  font-size: 24px;
+}
+
+footer .f-info-links a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #000;
 }
 
 /* navbar */
 .navbar {
   height: 5rem;
-  background-color: white;
+  background-color: #ade8f4;
 }
 
-.fa-compass {
-  color: #fe424d;
+.main {
+  flex: 1;
+}
+
+.fa-earth-asia {
+  color: #0d47a1;
   font-size: 2rem;
 }
 
 .nav-link {
-  color: #222222 !important;
+  color: #0d47a1 !important;
 }
 
 /* Footer */
 
-.footer {
-  background-color: #222222; /* Change as needed */
-  padding: 20px 0; /* Space around the footer */
-  position: relative; /* Position relative to its container */
-  text-align: center; /* Center text */
-  width: 100%; /* Ensure it spans the full width */
-}
-
 .f-info {
-  max-width: 1200px; /* Optional: limit the width of the content */
-  margin: 0 auto; /* Center the content horizontally */
-  /* text-align: center;
+  max-width: 1500;
+  margin: auto;
   height: 8rem;
-  background-color: #ebebeb;
+  background-color: #ade8f4;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: space-evenly; */
-}
-
-.f-info-socials i {
-  margin: 0 10px;
-  /* font-size: 1.2rem;
-  margin-right: 1rem; */
-}
-
-.f-info-links a {
-  margin: 0 10px;
-  /* text-decoration: none;
-  color: #222222; */
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
 }
 
 .f-info-links a:hover {
@@ -93,8 +78,8 @@ body {
 .f-info-brand {
   width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 /* cards */
@@ -128,18 +113,18 @@ body {
 
 .card-img-overlay:hover {
   opacity: 0.2;
-  background-color: white;
+  background-color: #e3f2fd;
 }
 
 .add-btn {
-  background-color: #fe424d !important;
+  background-color: #0d47a1 !important;
   border: none !important;
 }
 
 /* edit button */
 
 .edit-btn {
-  background-color: #fe424d !important;
+  background-color: #0d47a1 !important;
   border: none !important;
 }
 

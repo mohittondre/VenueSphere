@@ -23,7 +23,7 @@ module.exports.showListing = async (req, res) => {
     })
     .populate("owner");
   if (!listing) {
-    req.flash("error", "Listing you are requested for does not exist");
+    req.flash("error", "Venue you are requested for does not exist");
     res.redirect("/listings");
   }
   console.log(listing);
@@ -50,7 +50,7 @@ module.exports.createListing = async (req, res, next) => {
 
   console.log(savedListing);
 
-  req.flash("success", "New listing created!");
+  req.flash("success", "New Venue created!");
   res.redirect("/listings");
 };
 
@@ -58,7 +58,7 @@ module.exports.rendreEdit = async (req, res) => {
   let { id } = req.params;
   const listing = await Listing.findById(id);
   if (!listing) {
-    req.flash("error", "Listing you are requested for does not exist");
+    req.flash("error", "Venue you are requested for does not exist");
     res.redirect("/listings");
   }
   let originalImageurl = listing.image.url;
@@ -77,7 +77,7 @@ module.exports.updateListing = async (req, res) => {
     await listing.save();
   }
 
-  req.flash("success", "Listing Updated");
+  req.flash("success", "Venue Updated");
   res.redirect(`/listings/${id}`);
 };
 
@@ -85,6 +85,6 @@ module.exports.destroyLisitng = async (req, res) => {
   let { id } = req.params;
   let deletedListing = await Listing.findByIdAndDelete(id);
   console.log(deletedListing);
-  req.flash("success", "Listing Deleted!");
+  req.flash("success", "Venue Deleted!");
   res.redirect("/listings");
 };
