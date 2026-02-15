@@ -1,7 +1,7 @@
 const Listing = require("../models/listing");
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
-const mapToken = process.env.MAP_TOKEN;
-const geocodingClient = mbxGeocoding({ accessToken: mapToken });
+const mapToken = process.env.MAP_TOKEN || "pk.eyJ1IjoiZGVtbyIsImEiOiJjbHZ6Nnd4bWwwNjJqMmluZzVlbnQxZXdkIn0.demo";
+const geocodingClient = mapToken ? mbxGeocoding({ accessToken: mapToken }) : null;
 
 module.exports.index = async (req, res) => {
   const allListings = await Listing.find({});
@@ -31,27 +31,41 @@ module.exports.showListing = async (req, res) => {
 };
 
 module.exports.createListing = async (req, res, next) => {
-  let response = await geocodingClient
-    .forwardGeocode({
-      query: req.body.listing.location,
-      limit: 1,
-    })
-    .send();
+  try {
+    let geometry = { type: "Point", coordinates: [0, 0] };
+    
+    if (geocodingClient && req.body.listing.location) {
+      try {
+        let response = await geocodingClient
+          .forwardGeocode({
+            query: req.body.listing.location,
+            limit: 1,
+          })
+          .send();
+        if (response.body.features && response.body.features.length > 0) {
+          geometry = response.body.features[0].geometry;
+        }
+      } catch (geoError) {
+        console.log("Geocoding failed, using default coordinates:", geoError.message);
+      }
+    }
 
-  let url = req.file.path;
-  let filename = req.file.filename;
-  const newListing = new Listing(req.body.listing);
-  newListing.owner = req.user._id;
-  newListing.image = { url, filename };
+    let url = req.file ? req.file.path : "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800";
+    let filename = req.file ? req.file.filename : "default-image";
+    
+    const newListing = new Listing(req.body.listing);
+    newListing.owner = req.user._id;
+    newListing.image = { url, filename };
+    newListing.geometry = geometry;
 
-  newListing.geometry = response.body.features[0].geometry;
+    let savedListing = await newListing.save();
+    console.log(savedListing);
 
-  let savedListing = await newListing.save();
-
-  console.log(savedListing);
-
-  req.flash("success", "New Venue created!");
-  res.redirect("/listings");
+    req.flash("success", "New Venue created!");
+    res.redirect("/listings");
+  } catch (err) {
+    next(err);
+  }
 };
 
 module.exports.rendreEdit = async (req, res) => {
