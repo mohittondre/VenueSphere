@@ -19,7 +19,7 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/VenueSphere";
+const MONGO_URL = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/VenueSphere";
 
 // Connect to the MongoDB database
 async function main() {
@@ -51,6 +51,11 @@ const sessionOptions = {
     httpOnly: true,
   },
 };
+
+// Root route - redirect to listings
+app.get("/", (req, res) => {
+  res.redirect("/listings");
+});
 
 // Root route
 // app.get("/", (req, res) => {
@@ -94,6 +99,9 @@ app.use((err, req, res, next) => {
   // res.status(statusCode).send(message);
 });
 
-app.listen(8080, () => {
-  console.log("server is listening on port 8080");
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+  console.log(`server is listening on port ${port}`);
 });
+
+module.exports = app;
